@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inauguración</title>
+  <link rel="icon" href="../img/favicon2.png" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/css/custom.css" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <style>
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .main-image {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .caption {
+      text-align: left;
+      font-style: italic;
+    }
+
+    .custom-div {
+      background-color: transparent;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    .figure-img-personaje {
+      width: 100%;
+      height: 7rem;
+      object-fit: cover;
+    }
+
+    .figure-caption-personaje {
+      text-align: center;
+    }
+
+    /* Asegurar que las tarjetas laterales sean accesibles */
+    .noticia-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .noticia-link:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header fijo -->
+  <header class="fixed-top-section">
+    <div id="customHeader"></div>
+    <div id="menuhorizontal"></div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="container-fluid mt-4">
+    <div class="row justify-content-center">
+      <!-- Contenido principal (izquierda) -->
+      <div class="col-lg-8 col-md-8 col-12 mb-4">
+        <div class="card bg-transparent border-0">
+          <div class="card-body p-0">
+            <div class="p-3">
+              <h5 class="card-title mb-0 titulo-estilizado">
+                <div class="card-title-custom text-center" id="text-title">
+                  Cargando TÍTULO
+                </div>
+                <div class="card-subtitle-custom text-center" id="text-subtitle">
+                  Cargando subtítulo
+                </div>
+              </h5>
+            </div>
+
+            <figure>
+              <div class="imagen-con-bordes" id="image_news"></div>
+              <figcaption class="figure-caption text-end" style="width:90%">
+                <b>Fecha de Noticia:</b> 29/08/2024
+              </figcaption>
+            </figure>
+
+            <div class="p-3 titulo-estilizado" style="border-left: 1rem;">
+              <div id="text_news"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Noticias relacionadas (derecha) -->
+      <div class="col-lg-4 col-md-8 col-12">
+        <div class="p-3 mb-5 bg-body rounded" id="news-container" style="margin-top: 1rem;">
+          <!-- Las tarjetas se cargarán aquí dinámicamente -->
+        </div>
+      </div>
+    </div>
+
+      <!-- Sección de botón de regreso -->
+<a href="/index.html"><img src="/img/BotonInicio.png" alt="San Pablo" class="fixed-top-right"  title="Te llevo a página de Inicio"></a>
+
+  <!-- Footer -->
+  <footer>
+    <div id="custom_footer" style="margin-top: 1rem;"></div>
+  </footer>   
+  </main>
+
+
+
+
+
+  <!-- Scripts (única carga de jQuery y Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Scripts personalizados -->
+  <script>
+    function obtenerParametro(nombre) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(nombre);
+    }
+
+    function fillNews(i) {
+      let root = document.documentElement;
+      let cadena = i.toString().padStart(3, '0');
+      let _news_title = getComputedStyle(root).getPropertyValue('--news-title-' + cadena).trim();
+      let _news_page = getComputedStyle(root).getPropertyValue('--news-page-' + cadena).trim();
+      let _news_img = getComputedStyle(root).getPropertyValue('--news-img-' + cadena).trim();
+      let _news_subtitle = getComputedStyle(root).getPropertyValue('--news-subtitle-' + cadena).trim();
+
+      if (!_news_title || !_news_page) return ''; // Evitar tarjetas vacías
+
+      let html = '';
+      html += '<a href="' + _news_page + '" class="text-decoration-none noticia-link">';
+      html += '  <div class="card card-custom noticia-card mb-3 d-flex flex-row" style="max-width: 700px;">';
+      html += '    <img src="' + _news_img + '" class="card-img-left img-fluid rounded" alt="Imagen de noticia" style="height: 6rem; margin: 1rem;">';
+      html += '    <div class="card-body d-flex flex-column justify-content-center">';
+      html += '      <h5 class="card-title-custom-news">' + _news_title + '</h5>';
+      html += '      <p class="card-text-custom small text-muted">' + _news_subtitle + '</p>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</a>';
+      return html;
+    }
+
+    $(document).ready(function () {
+    // Cargar header primero
+
+    $('#customHeader').load('/secciones/customHeader.html', function () {
+        // Una vez terminado, cargar menú
+        $('#menuhorizontal').load('/secciones/menuhorizontal.html', function () {
+          $('#custom_footer').load('/secciones/custom_footer.html', function() {
+            // Ahora SÍ cargar el contenido de la noticia y las tarjetas
+            cargarContenido();
+          });
+
+        });
+    });
+
+    function cargarContenido() {
+        const _title = obtenerParametro("news");
+        const _img = obtenerParametro("img");
+        const _sbt = obtenerParametro("sbt");
+
+        let root = document.documentElement;
+        let _title_news = getComputedStyle(root).getPropertyValue('--news-title-' + (_title?.padStart(3, '0') || '')).trim();
+        let _image_news = getComputedStyle(root).getPropertyValue('--news-img-' + (_img?.padStart(3, '0') || '')).trim();
+        let _text_news = getComputedStyle(root).getPropertyValue('--news-text-' + (_title?.padStart(3, '0') || '')).trim();
+        let _sub_news = getComputedStyle(root).getPropertyValue('--news-subtitle-' + (_sbt?.padStart(3, '0') || '')).trim();
+
+        $('#text-title').text(_title_news || '');
+        $('#text-subtitle').text(_sub_news || '');
+        if (_image_news) {
+        $('#image_news').html(`<img src="${_image_news}" class="figure-img img-fluid rounded main-image" alt="Noticia">`);
+        }
+        $('#text_news').html(_text_news || '');
+
+        // Cargar tarjetas SOLO después del header
+        $('#news-container').empty();
+        for (let j = 1; j < 10; j++) {
+        const cardHtml = fillNews(j);
+        if (cardHtml) {
+            $('#news-container').append(cardHtml);
+        }
+        }
+    }
+    });
+
+
+  </script>
+</body>
+</html>

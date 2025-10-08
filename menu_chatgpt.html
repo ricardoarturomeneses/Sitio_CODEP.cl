@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menú CODEP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .navbar-nav {
+      margin-left: auto;
+    }
+
+    /* Submenús anidados */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-top: 0;
+      display: none;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-submenu > a::after {
+      content: " ▶";
+      float: right;
+    }
+
+    .navbar .dropdown-menu {
+      overflow: visible;
+    }
+
+    .dropdown-menu-end .dropdown-submenu .dropdown-menu {
+      left: auto;
+      right: 100%;
+    }
+
+    /* Habilitar efecto hover también para dropdowns normales */
+    .nav-item.dropdown:hover > .dropdown-menu {
+      display: block;
+    }
+
+    /* Evita que desaparezca bruscamente al pasar por el borde */
+    .nav-item.dropdown > .dropdown-toggle::after {
+      margin-left: 0.25em;
+    }
+
+    /* Aumenta tiempo de cierre para permitir navegar el submenú */
+    .dropdown-menu {
+      transition: all 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CODEP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCODEP" aria-controls="navbarCODEP" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCODEP">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Quiénes somos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Portal Laboral</a></li>
+
+          <!-- SALUD con hover -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="saludDropdown" role="button">Salud</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="saludDropdown">
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">CESFAM</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">CESFAM Pudahuel</a></li>
+                  <li><a class="dropdown-item" href="#">CESFAM La Estrella</a></li>
+                  <li><a class="dropdown-item" href="#">CESFAM Pablo Neruda</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#">CECOSF</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">CECOSF Santa Corina</a></li>
+                  <li><a class="dropdown-item" href="#">CECOSF La Estrella</a></li>
+                </ul>
+              </li>
+
+              <li><a class="dropdown-item" href="#">SAR, SAPU y SUR</a></li>
+              <li><a class="dropdown-item" href="#">Farmacia Popular</a></li>
+              <li><a class="dropdown-item" href="#">COSAM Pudahuel</a></li>
+              <li><a class="dropdown-item" href="#">Centro de Rehabilitación RBC</a></li>
+              <li><a class="dropdown-item" href="#">Laboratorio Comunal</a></li>
+            </ul>
+          </li>
+
+          <!-- Otros ítems -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="bibliotecasDropdown" role="button">Bibliotecas</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bibliotecasDropdown">
+              <li><a class="dropdown-item" href="#">Biblioteca Digital</a></li>
+              <li><a class="dropdown-item" href="#">Biblioteca Jaime Quilan</a></li>
+              <li><a class="dropdown-item" href="#">Biblioteca Gala Torres</a></li>
+              <li><a class="dropdown-item" href="#">Biblioteca Andrés Araya López</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="#">Piscina</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="masDropdown" role="button">Más</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="masDropdown">
+              <li><a class="dropdown-item" href="#">Programa TEA</a></li>
+              <li><a class="dropdown-item" href="#">Cementerio</a></li>
+              <li><a class="dropdown-item" href="#">Higiene y Medio Ambiente</a></li>
+              <li><a class="dropdown-item" href="#">Orquesta Juvenil</a></li>
+              <li><a class="dropdown-item" href="#">Ubicaciones</a></li>
+              <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
+              <li><a class="dropdown-item" href="#">Contáctenos</a></li>
+              <li><a class="dropdown-item" href="#">Concurso Público</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div style="height: 80px;"></div>
+  <div class="container mt-5">
+    <h1>Bienvenido</h1>
+    <p>Menú con despliegue automático de "Salud" al pasar el mouse.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
