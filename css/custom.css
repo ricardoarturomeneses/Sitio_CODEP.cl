@@ -29,6 +29,7 @@
       margin: 0;
       padding-top: 100px; /* Se ajustará dinámicamente si quieres */
       color: var(--color-institucional);
+      background-color: #f4f4f4;
       font-family: 'Todayshop', 'Trebuchet';
     }
 
@@ -424,7 +425,7 @@ h2 {
     font-style: italic;
     color:  var(--color-institucional);
     background-color: rgba(255, 255, 255, 0.5);
-    font-family: 'Todayshop', 'Trebuchet';
+    /*font-family: 'Todayshop', 'Trebuchet';*/
 }
 
 /* Metadatos: fecha alineada a la izquierda */
@@ -622,7 +623,7 @@ h2 {
   }
 
   .img-actividad {
-    max-width: 80px; /* ajusta este valor si es necesario */
+    max-width: 120px; /* ajusta este valor si es necesario */
     width: 100%;
     height: auto;
   }
@@ -638,6 +639,62 @@ h2 {
   transform: scale(1.05);
 }
 
+/* ———————————————————————————————
+   Texto desplazado continuo (marquee moderno)
+   ——————————————————————————————— */
+
+.scrolling-text-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 2rem;
+  box-sizing: border-box;
+}
+
+.scrolling-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+}
+
+.scrolling-text-container:hover .scrolling-text {
+  animation-play-state: paused;
+}
+
+/* Versión mejorada para fluidez (opcional, si usas texto repetido) */
+.scrolling-text.smooth {
+  padding-left: 0;
+  animation: scroll-left-smooth 20s linear infinite;
+}
+
+.scrolling-text-with-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* espacio entre íconos */
+}
+
+.scrolling-text-with-icons .social-icon {
+  font-size: 1.2rem;
+  color: whitesmoke;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.scrolling-text-with-icons .social-icon:hover {
+  color: #0d6efd; /* azul de Bootstrap, o usa tu color corporativo */
+}
+
+.caja-texto-sombra {
+  width: 90%;
+  margin: 2rem auto; /* centrado horizontal + margen vertical */
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* sombra suave */
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
 
 @keyframes pasarLinterna {
   0% {
@@ -648,5 +705,24 @@ h2 {
   }
   100% {
     background-position: -100% 0;
+  }
+}
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll-left-smooth {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
